@@ -12,17 +12,19 @@ public class Pizza {
     private String name;
     private String description;
     private Double price;
+    private String image;
 
     //Default Constructor
     public Pizza() {
     }
 
     //Constructor
-    public Pizza(int id, String name, String description, Double price) {
+    public Pizza(int id, String name, String description, Double price, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.image = image;
     }
 
     //getter and setter
@@ -56,5 +58,13 @@ public class Pizza {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

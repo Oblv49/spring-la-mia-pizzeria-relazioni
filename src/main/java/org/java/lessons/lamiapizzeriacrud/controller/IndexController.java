@@ -63,7 +63,7 @@ public class IndexController {
             Pizza pizza6 = new Pizza();
             pizza6.setName("Wurstel e Patatine");
             pizza6.setDescription("Wurstel, patatine fritte, pomodoro, mozzarella");
-            pizza6.setImage("https://italianspizza.it/wp-content/uploads/2022/06/FAMILY-PIZZA-IN-PIAZZA-patatine-wurstel-online-pizza-delivery-consegna-a-domicilio-aperti-7-giorni-su-7-eventi-graffignana-mostiola-livraga-chignolo-lodi-milano-italia.png");
+            pizza6.setImage("https://pizzarella.ch/wp-content/uploads/2020/07/Pizza-Bambini-Pizzarella-Ticino.jpg");
             pizza6.setPrice(9.50);
             pizzaRepository.save(pizza6);
 

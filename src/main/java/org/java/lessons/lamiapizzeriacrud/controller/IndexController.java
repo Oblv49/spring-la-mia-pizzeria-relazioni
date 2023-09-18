@@ -96,7 +96,7 @@ public class IndexController {
             model.addAttribute("messaggio", "Nessuna pizza disponibile.");
         }
 
-        return "/Pizze/List";
+        return "/pizze/List";
 
     }
 
@@ -106,7 +106,7 @@ public class IndexController {
         if (pizzaOptional.isPresent()) {
             Pizza pizzaFromDB = pizzaOptional.get();
             model.addAttribute("pizza", pizzaFromDB);
-            return "/Pizze/detail";
+            return "/pizze/detail";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

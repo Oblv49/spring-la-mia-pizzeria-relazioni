@@ -1,6 +1,9 @@
 package org.java.lessons.lamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "pizze")
@@ -9,9 +12,21 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
+    @Size(min = 5, max = 100)
+    @Column(name = "nome", length = 100)
     private String name;
+    @NotBlank
+    @Size(min = 10, max = 150)
+    @Column(length = 150)
     private String description;
-    private Double price;
+    @NotNull
+    @DecimalMin(value = "1.00", message = "Il prezzo deve essere maggiore di 1")
+    @DecimalMax(value = "999.99", message = "Il prezzo non può superare 999.99")
+    @Digits(integer = 3, fraction = 2, message = "Il prezzo deve avere al massimo due decimali")
+    @Column(name = "price", precision = 5, scale = 2)
+    private BigDecimal price;
+    @NotBlank
     private String image;
 
     //Default Constructor
@@ -19,7 +34,7 @@ public class Pizza {
     }
 
     //Constructor
-    public Pizza(int id, String name, String description, Double price, String image) {
+    public Pizza(int id, String name, String description, BigDecimal price, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -52,11 +67,11 @@ public class Pizza {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

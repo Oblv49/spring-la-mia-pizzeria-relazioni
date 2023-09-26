@@ -26,6 +26,9 @@
     </div>
     <hr class="text-warning">
     <div class="row">
+        <div th:if="${pizze.isEmpty() && param.q != null}" class="m-2 text-warning">
+            <h1>Nessun elemento trovato per la ricerca: <strong th:text="${param.q}"></strong></h1>
+        </div>
         <div class="col-md-4 text-center" th:each="pizza : ${pizze}">
             <div class="card p-3 mb-2 m-auto" style="width: 18rem;">
                 <img th:src="${pizza.image}" alt="Pizza Image"/>

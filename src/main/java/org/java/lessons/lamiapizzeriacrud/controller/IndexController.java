@@ -93,6 +93,9 @@ public class IndexController {
     @GetMapping("/search")
     public String search(@RequestParam("q") String searchString, Model model) {
         List<Pizza> filteredPizzaList = pizzeRepository.findByNameContaining(searchString);
+        if (filteredPizzaList.isEmpty()) {
+            model.addAttribute("noResults", true);
+        }
         model.addAttribute("pizze", filteredPizzaList);
         return "pizze/List";
     }

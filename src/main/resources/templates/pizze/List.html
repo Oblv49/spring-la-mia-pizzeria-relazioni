@@ -44,7 +44,7 @@
                             </a>
                         </div>
                         <div class="m-2">
-                            <form th:action="@{/pizze/delete/{id}(id=${pizza.id})}" method="POST">
+                            <form th:action="@{/delete/{id}(id=${pizza.id})}" method="POST">
                                 <button type="submit" class="btn btn-warning">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>

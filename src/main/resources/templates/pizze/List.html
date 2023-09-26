@@ -6,12 +6,23 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="row text-center mt-3">
-        <div>
-            <h1 class="text-warning">Le Nostre Pizze</h1>
+
+        <div class="d-flex mb-3 justify-content-around align-items-center">
+            <div class="me-auto">
+                <a th:href="@{/create}" class="btn btn-warning">Aggiungi Pizza</a>
+            </div>
+            <div>
+                <h1 class="text-warning">Le Nostre Pizze</h1>
+            </div>
+            <div class="ms-auto">
+                <form th:action="@{/search}" method="get" class="d-flex align-items-center">
+                    <input type="text" name="q" class="form-control form-control-sm me-2" placeholder="Cerca...">
+                    <button type="submit" class="btn btn-warning">Cerca</button>
+                </form>
+            </div>
         </div>
-        <div>
-            <a href="/create" class="col-md-3 btn btn-warning">Aggiungi Pizza</a>
-        </div>
+
+
     </div>
     <hr class="text-warning">
     <div class="row">
@@ -21,7 +32,26 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${pizza.name}">Nome Pizza</h5>
                     <p class="card-text" th:text="'Prezzo: ' + ${pizza.price} + ' €'">Prezzo</p>
-                    <a th:href="@{/show/{id}(id=${pizza.id})}" class="btn btn-warning">Dettagli</a>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <div class="m-2">
+                            <a th:href="@{/show/{id}(id=${pizza.id})}" class="btn btn-warning">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </div>
+                        <div class="m-2">
+                            <a th:href="@{/edit/{id}(id=${pizza.id})}" class="btn btn-warning">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </div>
+                        <div class="m-2">
+                            <form th:action="@{/pizze/delete/{id}(id=${pizza.id})}" method="POST">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

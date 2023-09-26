@@ -12,12 +12,12 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank
+    @NotBlank(message = "Inserisci un nome che sia minimo 5 caratteri.")
     @Size(min = 5, max = 100)
     @Column(name = "nome", length = 100)
     private String name;
     @NotBlank
-    @Size(min = 10, max = 150)
+    @Size(min = 10, max = 150, message = "Inserisci un nome che sia minimo 5 caratteri.")
     @Column(length = 150)
     private String description;
     @NotNull

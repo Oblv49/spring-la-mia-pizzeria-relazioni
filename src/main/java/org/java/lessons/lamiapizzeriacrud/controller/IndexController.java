@@ -62,4 +62,38 @@ public class IndexController {
         pizzeRepository.save(pizzaForm);
         return "redirect:/";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Pizza> result = pizzeRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("pizza", result.get());
+            return "pizze/edit";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id " + id + " not found");
+        }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza pizzaForm,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "pizze/edit";
+        }
+        pizzeRepository.save(pizzaForm);
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id) {
+        pizzeRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String searchString, Model model) {
+        List<Pizza> filteredPizzaList = pizzeRepository.findByNameContaining(searchString);
+        model.addAttribute("pizze", filteredPizzaList);
+        return "pizze/List";
+    }
 }

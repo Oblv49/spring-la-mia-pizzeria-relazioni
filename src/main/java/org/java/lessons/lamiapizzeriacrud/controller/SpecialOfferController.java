@@ -40,8 +40,11 @@ public class SpecialOfferController {
             return "specialOffer/offerForm";
         }
         List<Pizza> pizzeList = pizzeRepository.findAllById(pizzeId);
-        specialOfferForm.setPizze(pizzeList);
         specialOfferRepository.save(specialOfferForm);
+        for (Pizza pizza : pizzeList) {
+            pizza.setSpecialOffer(specialOfferForm);
+            pizzeRepository.save(pizza);
+        }
         return "redirect:/";
     }
 }

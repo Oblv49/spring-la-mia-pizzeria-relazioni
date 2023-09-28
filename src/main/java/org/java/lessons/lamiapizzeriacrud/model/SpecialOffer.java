@@ -24,7 +24,7 @@ public class SpecialOffer {
     private String offerTitle;
 
 
-    @OneToMany
+    @OneToMany(mappedBy = "specialOffer")
     public List<Pizza> pizze;
 
     //constructor
@@ -84,6 +84,6 @@ public class SpecialOffer {
 
     public boolean isActive() {
         LocalDate currentDate = LocalDate.now();
-        return currentDate.isAfter(startDate) && currentDate.isBefore(finishDate);
+        return !currentDate.isBefore(startDate) && !currentDate.isAfter(finishDate);
     }
 }

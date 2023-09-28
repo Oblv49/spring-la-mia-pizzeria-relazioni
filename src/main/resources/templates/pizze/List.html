@@ -36,8 +36,11 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${pizza.name}">Nome Pizza</h5>
                     <p class="card-text" th:text="'Prezzo: ' + ${pizza.price} + ' €'">Prezzo</p>
-                    <p class="card-text" th:if="${pizza.activeOffer != Null}"
-                       th:text="'Offerta Attiva: ' + ${pizza.specialOffer}"></p>
+                    <p th:if="${pizza.specialOffer}">
+                        <span th:text="'Offerta Attiva: ' + ${pizza.specialOffer.offerTitle}"></span>
+                        <span th:if="${pizza.specialOffer.isActive()}" class="badge bg-success">Attiva</span>
+                        <span th:text="'Fino Al: ' + ${pizza.specialOffer.finishDate}"></span>
+                    </p>
                     <div class="d-flex justify-content-around align-items-center">
                         <div class="m-2">
                             <a th:href="@{/show/{id}(id=${pizza.id})}" class="btn btn-warning">

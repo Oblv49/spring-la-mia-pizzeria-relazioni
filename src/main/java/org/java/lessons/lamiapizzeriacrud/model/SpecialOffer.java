@@ -24,8 +24,8 @@ public class SpecialOffer {
     private String offerTitle;
 
 
-    @ManyToMany
-    private List<Pizza> pizze;
+    @OneToMany
+    public List<Pizza> pizze;
 
     //constructor
     public SpecialOffer(int id, LocalDate startDate, LocalDate finishDate, String offerTitle, List<Pizza> pizze) {

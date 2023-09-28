@@ -29,6 +29,8 @@ public class Pizza {
     @NotBlank
     private String image;
 
+    @ManyToOne
+    public SpecialOffer specialOffer;
 
     //Default Constructor
     public Pizza() {
@@ -84,5 +86,20 @@ public class Pizza {
         this.image = image;
     }
 
+    public SpecialOffer getSpecialOffer() {
+        return specialOffer;
+    }
+
+    public void setSpecialOffer(SpecialOffer specialOffer) {
+        this.specialOffer = specialOffer;
+    }
+
+    //custom method
+    public boolean getActiveOffer() {
+        if (specialOffer != null) {
+            return true;
+        }
+        return false;
+    }
 
 }

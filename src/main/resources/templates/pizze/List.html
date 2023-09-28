@@ -6,24 +6,25 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="row text-center mt-3">
-
-        <div class="d-flex mb-3 justify-content-around align-items-center">
-            <div class="me-auto">
-                <a th:href="@{/create}" class="btn btn-warning">Aggiungi Pizza</a>
-            </div>
-            <div>
-                <h1 class="text-warning">Le Nostre Pizze</h1>
-            </div>
-            <div class="ms-auto">
-                <form th:action="@{/search}" method="get" class="d-flex align-items-center">
-                    <input type="text" name="q" class="form-control form-control-sm me-2" placeholder="Cerca...">
-                    <button type="submit" class="btn btn-warning">Cerca</button>
-                </form>
-            </div>
+        <div class="col">
+            <h1 class="text-warning">Le Nostre Pizze</h1>
         </div>
-
-        a
     </div>
+    <div class="row text-center">
+        <div class="col">
+            <a th:href="@{/create}" class="btn btn-warning">Aggiungi Pizza</a>
+        </div>
+        <div class="col">
+            <a th:href="@{/special-offer}" class="btn btn-warning">Aggiungi Offerta</a>
+        </div>
+        <div class="col">
+            <form th:action="@{/search}" method="get" class="d-flex align-items-center">
+                <input type="text" name="q" class="form-control form-control-sm me-2" placeholder="Cerca...">
+                <button type="submit" class="btn btn-warning">Cerca</button>
+            </form>
+        </div>
+    </div>
+
     <hr class="text-warning">
     <div class="row">
         <div th:if="${pizze.isEmpty() && param.q != null}" class="m-2 text-warning">
@@ -35,6 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${pizza.name}">Nome Pizza</h5>
                     <p class="card-text" th:text="'Prezzo: ' + ${pizza.price} + ' €'">Prezzo</p>
+                    <p class="card-text" th:text="'Offerta Attiva: ' + ${pizza.getActiveOffer()}"></p>
                     <div class="d-flex justify-content-around align-items-center">
                         <div class="m-2">
                             <a th:href="@{/show/{id}(id=${pizza.id})}" class="btn btn-warning">

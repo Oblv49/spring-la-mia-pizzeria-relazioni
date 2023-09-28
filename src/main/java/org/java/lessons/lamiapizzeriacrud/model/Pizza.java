@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "pizze")
@@ -28,6 +29,9 @@ public class Pizza {
     private BigDecimal price;
     @NotBlank
     private String image;
+
+    @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
+    private List<SpecialOffer> specialOffers;
 
     //Default Constructor
     public Pizza() {
@@ -81,5 +85,27 @@ public class Pizza {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<SpecialOffer> getSpecialOffers() {
+        return specialOffers;
+    }
+
+    public void setSpecialOffers(List<SpecialOffer> specialOffers) {
+        this.specialOffers = specialOffers;
+    }
+
+    public int getNumberOfOffers() {
+        return this.specialOffers.size();
+    }
+
+    public String getActiveOffer() {
+        for (SpecialOffer offer : specialOffers) {
+            if (offer.isActive()) {
+                return offer.getOfferTitle();
+            }
+        }
+        return null;
+
     }
 }

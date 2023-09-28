@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Offer")
@@ -23,16 +24,16 @@ public class SpecialOffer {
     private String offerTitle;
 
 
-    @ManyToOne
-    private Pizza pizza;
+    @ManyToMany
+    private List<Pizza> pizze;
 
     //constructor
-    public SpecialOffer(int id, LocalDate startDate, LocalDate finishDate, String offerTitle, Pizza pizza) {
+    public SpecialOffer(int id, LocalDate startDate, LocalDate finishDate, String offerTitle, List<Pizza> pizze) {
         this.id = id;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.offerTitle = offerTitle;
-        this.pizza = pizza;
+        this.pizze = pizze;
     }
 
     //constructor default
@@ -73,14 +74,13 @@ public class SpecialOffer {
         this.offerTitle = offerTitle;
     }
 
-    public Pizza getPizza() {
-        return pizza;
+    public List<Pizza> getPizze() {
+        return pizze;
     }
 
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
+    public void setPizze(List<Pizza> pizze) {
+        this.pizze = pizze;
     }
-
 
     public boolean isActive() {
         LocalDate currentDate = LocalDate.now();

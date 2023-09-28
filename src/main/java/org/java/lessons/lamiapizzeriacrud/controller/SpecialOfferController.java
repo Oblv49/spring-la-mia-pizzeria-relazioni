@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,10 +33,14 @@ public class SpecialOfferController {
     }
 
     @PostMapping("/special-offer")
-    public String doCreateSpecialOff(@Valid @ModelAttribute("specialOffer") SpecialOffer specialOfferForm, BindingResult bindingResult) {
+    public String doCreateSpecialOff(@Valid @ModelAttribute("specialOffer") SpecialOffer specialOfferForm,
+                                     BindingResult bindingResult,
+                                     @RequestParam("pizzeId") List<Integer> pizzeId) {
         if (bindingResult.hasErrors()) {
             return "specialOffer/offerForm";
         }
+        List<Pizza> pizzeList = pizzeRepository.findAllById(pizzeId);
+        specialOfferForm.setPizze(pizzeList);
         specialOfferRepository.save(specialOfferForm);
         return "redirect:/";
     }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PizzeRepository extends JpaRepository<Pizza, Integer> {
     List<Pizza> findByNameContaining(String searchString);
+
 }

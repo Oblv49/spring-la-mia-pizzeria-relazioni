@@ -16,7 +16,34 @@
             <p th:text="${pizza.description}" class="text-white"></p>
         </div>
     </div>
+
 </div>
+<hr class="text-warning">
+<div class="container">
+    <h1 class="text-warning">Offerte Attive</h1>
+    <div th:if="${pizza.specialOffer}">
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th class="text-warning" scope="col">Offer Title</th>
+                <th class="text-warning" scope="col">Start Date</th>
+                <th class="text-warning" scope="col">Finish Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${pizza.specialOffer.offerTitle}"></td>
+                <td th:text="${pizza.specialOffer.startDate}"></td>
+                <td th:text="${pizza.specialOffer.finishDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:unless="${pizza.specialOffer}">
+        <p class="text-white">Non ci sono offerte attive al momento.</p>
+    </div>
+</div>
+
 <div class="text-center">
     <a th:href="@{/}" class="text-warning"> &lt;&lt; Le Nostre Pizze</a>
 </div>

@@ -2,6 +2,7 @@ package org.java.lessons.lamiapizzeriacrud.controller;
 
 import jakarta.validation.Valid;
 import org.java.lessons.lamiapizzeriacrud.model.Pizza;
+import org.java.lessons.lamiapizzeriacrud.model.SpecialOffer;
 import org.java.lessons.lamiapizzeriacrud.repository.PizzeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,8 @@ public class IndexController {
         if (pizzaOptional.isPresent()) {
             Pizza pizzaFromDB = pizzaOptional.get();
             model.addAttribute("pizza", pizzaFromDB);
+            SpecialOffer specialOffer = pizzaFromDB.getSpecialOffer();
+            model.addAttribute("specialOffer", specialOffer);
             return "/pizze/detail";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

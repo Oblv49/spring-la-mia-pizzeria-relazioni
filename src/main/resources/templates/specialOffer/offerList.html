@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/script :: head('Lista Offerte')"></head>
+
+<body class="bg-dark">
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <h1 class="text-warning mt-3">Lista Offerte Attive</h1>
+    <hr class="text-warning">
+</div>
+<div class="container">
+    <table class="table table-dark table-striped" th:each="specialOffer : ${specialOffer}">
+        <thead>
+        <tr>
+            <th class="text-warning" scope="col">Offer Title</th>
+            <th class="text-warning" scope="col">Start Date</th>
+            <th class="text-warning" scope="col">Finish Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${specialOffer.offerTitle}"></td>
+            <td th:text="${specialOffer.startDate}"></td>
+            <td th:text="${specialOffer.finishDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<th:block th:replace="fragments/script :: scriptBody"></th:block>
+</body>
+</html>

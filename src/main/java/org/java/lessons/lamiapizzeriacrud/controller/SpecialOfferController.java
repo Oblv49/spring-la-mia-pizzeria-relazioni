@@ -47,4 +47,15 @@ public class SpecialOfferController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/offer-list")
+    public String showOfferList(Model model) {
+        List<SpecialOffer> specialOffersList = specialOfferRepository.findAll();
+        model.addAttribute("specialOffer", specialOffersList);
+        if (specialOffersList.isEmpty()) {
+            model.addAttribute("messaggio", "Nessuna offerta disponibile.");
+        }
+        return "/specialOffer/offerList";
+    }
+
 }

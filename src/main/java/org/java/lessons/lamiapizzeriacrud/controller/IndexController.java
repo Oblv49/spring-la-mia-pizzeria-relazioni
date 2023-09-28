@@ -27,11 +27,9 @@ public class IndexController {
 
         List<Pizza> pizzeList = pizzeRepository.findAll();
         model.addAttribute("pizze", pizzeList);
-
         if (pizzeList.isEmpty()) {
             model.addAttribute("messaggio", "Nessuna pizza disponibile.");
         }
-
         return "/pizze/List";
 
     }

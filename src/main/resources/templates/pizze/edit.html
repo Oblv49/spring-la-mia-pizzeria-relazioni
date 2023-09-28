@@ -6,8 +6,8 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
-    <h1>Edit Book</h1>
-    <hr>
+    <h1 class="text-warning mt-3">Modifica Pizza</h1>
+    <hr class="text-warning">
     <form
             th:action="@{/edit/{id}(id=${pizza.id})}"
             id="pizza-edit"
